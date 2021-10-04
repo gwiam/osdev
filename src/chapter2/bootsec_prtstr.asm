@@ -5,15 +5,22 @@
 				; at mem addr 0x7c00, tell program that it should count
 				; mem offset always from 0x7c00. This avoids manually
 				; calculating memory addresses 0x7c00 + offset
-mov ah, 0x0e 	; interrupt 0x10 switches on the number in the ah register
-			 	; 0x0e indicates teletype
-				; start to print each character by moving value into al register
-				; and then triggering int 0x10
+
+; print two strings
+
+mov bx, hello_str
+call print_string
+mov bx, goodbye_str
+call print_string
 
 jmp $			; endless loop: jump to current address
 
-my_str:
-	db 'My boot sector string', 0
+%include "print_string.asm"
+
+hello_str:
+	db 'Hello William :)', 0xA,0xD,0 ; 0xA 0xD are LF and CR in ASCII for new line
+goodbye_str:
+	db 'Goodbye!', 0
 
 ;
 ; section indicating bootable sector
