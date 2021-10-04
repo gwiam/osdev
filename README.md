@@ -1,4 +1,4 @@
-#Learning OS development
+# Learning OS development
 
 This repo is just a personal stash of things that I've learned trying to understand how modern day operating systems are programmed and work. It might not be 100% structured logically but take it as my learning process around it all.
 Feel free to poke around.
