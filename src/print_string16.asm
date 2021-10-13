@@ -2,7 +2,7 @@
 ; Include file which provides a routine for printing null-terminated strings
 ;
 
-print_string:
+print_string16:
 	; print a string which starting address is given in bx
 	pusha		; store all previous registers onto the stack
 	mov ah, 0x0e	; set teletype mode for int 0x10
