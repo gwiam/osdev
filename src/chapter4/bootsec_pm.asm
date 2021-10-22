@@ -1,7 +1,7 @@
 ;
 ; A short boot sector program to let us jump into 32bit protected mode
 ;
-[org 0x7c00]	; count all addresses from here
+;[org 0x7c00]	; count all addresses from here
 
 [bits 16]
 
@@ -18,9 +18,6 @@ call switch_to_pm		; we will never return from this call!
 
 jmp	$					; endless loop which will never get executed
 
-MSG_REAL_MODE:
-	db "We have started in 16-bit real mode",0
-
 %include "../print_string16.asm"
 %include "gdt.asm"
 %include "print_string_pm.asm"
@@ -36,6 +33,8 @@ BEGIN_PM:
 	jmp $				; endless loop
 
 ; data
+MSG_REAL_MODE:
+	db "We have started in 16-bit real mode",0
 
 MSG_PROTECTED_MODE:
 	db "We have successfully switched into 32-bit protected mode",0

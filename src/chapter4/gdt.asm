@@ -1,7 +1,7 @@
 ;
 ; Define the GDT (Global descriptor table) in asm
 ;
-
+[bits 16]
 gdt_begin:
 
 ; GDT consists of a bunch of segment descriptors (SD)
@@ -20,8 +20,8 @@ gdt_null:		; first segment descriptor is always null descriptor
 gdt_code_seg:	; first proper segment is the code segment where code is executed
 	dw 0xffff		; [15:0] bits 0-15 of the limit sets the size of the segment
 	dw 0x0			; [31:16] bits 0-15 of the segment base addr
-	dw 0x0			; [upper 7:0] bits 16-23 of the segment base addr
-	dw 10011010b	; [upper 15:8] set binary flags for type of segment:
+	db 0x0			; [upper 7:0] bits 16-23 of the segment base addr
+	db 10011010b	; [upper 15:8] set binary flags for type of segment:
 					; set to maximum addressable 16-bit number
 					; [BIT15]
 					; P=1 segment present

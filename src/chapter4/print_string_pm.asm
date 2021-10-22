@@ -34,7 +34,8 @@ start_print_pm:		; start printing process by looping through string
 					; this equates to displaying the character
 	
 	add ebx, 1		; add 1 to the address to get the next character
-	add edx, 1		; add 1 to the video mem address to get the next cell
+	add edx, 2		; add 2 to the video mem address to get the next cell, adding 1
+					; results in writing the char into attr cell causing color issues
 	jmp start_print_pm
 
 end_of_str_pm:
