@@ -9,12 +9,13 @@ Feel free to poke around.
 * Chapter 2 further familiarization of assembler language (x86): stack, conditional jumps, interrupt output, functions etc.
 * Chapter 3 memory access, segmentation etc
 * Chapter 4 32-bit protected mode
-* Chapter 5 64-bit long mode
+* Chapter 5 C-assembly translation and study
 * Chapter 6 trying to create a simple kernel
 * Chapter 7 Programming my own low level device drivers
-* Chapter 7 UEFI: my first attempt to do anything with UEFI
-* Chapter 8 Loading kernel with UEFI
-* Chapter 9 Linux kernel: Trying to understand it with the knowledge I gained now 
+* Chapter 8 Long mode: How to get to 64-bit
+* Chapter 9 UEFI: my first attempt to do anything with UEFI
+* Chapter 10 Loading kernel with UEFI
+* Chapter 11 Linux kernel: Trying to understand it with the knowledge I gained now 
 ## Sources
 The following sources where used to do the various things in this repo
 
