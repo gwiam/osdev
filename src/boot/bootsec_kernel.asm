@@ -58,12 +58,12 @@ BEGIN_PM:
 BOOT_DRIVE:
 	db 0		; store the boot drive into a temp storage
 MSG_REAL_MODE:
-	db "We have started in 16-bit real mode",0
+	db "We have started in 16-bit real mode!",13,10,0 ; 13dec,10dec is CR+LF
 
 MSG_PROTECTED_MODE:
-	db "We have successfully switched into 32-bit protected mode",0
+	db "We have successfully switched into 32-bit protected mode!",0
 MSG_LOADING_KERNEL:
-	db "We are loading the kernel...",0
+	db "We are loading the kernel...",13,10,0
 ; magic number and 0 padding until sector is full
 times 510-($-$$) db 0
 dw 0xaa55
