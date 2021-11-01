@@ -23,4 +23,5 @@ void print_char(char c, int col, int row, char attr);
 int get_screen_offset(int col, int row);
 int get_cursor();
 void set_cursor(int offset);
+void clear_screen();
 #endif

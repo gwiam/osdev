@@ -118,3 +118,19 @@ Print string at current cursor location
 void print(char* str){
 	print_at(str, -1,-1);
 }
+
+/*
+Clears the screen and resets the cursor
+*/
+void clear_screen(){
+	int row = 0;
+	int col = 0;
+	for (row=0; row < MAX_ROWS; row++){
+		for(col=0; col < MAX_COLS; col++){
+			print_char(' ', col, row, WHITE_ON_BLACK);	//just print loads of empty strings
+		}
+	}
+	
+	// reset cursor back to 0,0 to get the impression we have reset everything
+	set_cursor(get_screen_offset(0,0));
+}
