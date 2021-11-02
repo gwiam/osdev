@@ -24,4 +24,6 @@ int get_screen_offset(int col, int row);
 int get_cursor();
 void set_cursor(int offset);
 void clear_screen();
+int handle_scrolling(int cursor_offset);
 #endif
+

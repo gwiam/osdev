@@ -3,6 +3,8 @@
  *
 */
 #include "screen.h"
+#include "kernel/utils.h"
+
 extern unsigned char port_byte_in(unsigned short port);
 extern void port_byte_out(unsigned short port, unsigned char data);
 /*
@@ -33,7 +35,7 @@ void print_char(char c, int col, int row, char attr){
 	}
 	
 	offset += 2;	// go to the next cell
-	//offset = handle_scrolling(offset);	// in case we run out of screen, deal with scrolling action
+	offset = handle_scrolling(offset);	// in case we run out of screen, deal with scrolling action
 	set_cursor(offset);	//set cursor to the next cell
 }
 
@@ -133,4 +135,39 @@ void clear_screen(){
 	
 	// reset cursor back to 0,0 to get the impression we have reset everything
 	set_cursor(get_screen_offset(0,0));
+}
+
+// implementing scrolling feature
+// by deleting the very first row and then copying every following row up
+// e.g. row 2 > row 1, row 3 > row 2 etc
+// clear the last row for new input, giving the impression of scrolling
+
+int handle_scrolling(int cursor_offset){
+	
+	// Don't do anything and return original cursor_offset if
+	// cursor is still within the screen
+	// within screen means < MAX_ROWS*MAX_COLS * 2 in memory
+	if (cursor_offset < MAX_ROWS*MAX_COLS*2){
+		return cursor_offset;
+	}
+	
+	// here, cursor is about to go offscreen
+	// copy for all rows: row n => row n-1
+	int i;
+	for (i = 1; i < MAX_ROWS; i++){
+		mem_cp((char*)(VIDEO_MEM + get_screen_offset(0,i)), // source which is the first char of current line
+				  (char*)(VIDEO_MEM + get_screen_offset(0,i-1)), // dest, which is row before
+				  MAX_COLS*2	//all cells, each cell 2 bytes long
+		);
+	}
+	
+	// now that everything has moved, blank last line
+	char* last_line = (char*)( VIDEO_MEM + get_screen_offset(0, MAX_ROWS-1)); //beginning addr of last line
+	for (i=0; i < MAX_COLS; i++){
+		last_line[i] = ' ';
+	}
+
+	// reset cursor to the beginning of the last row
+	cursor_offset -= 2*MAX_COLS;	// subtract length of row from current position which would be out of bounds
+	return cursor_offset;
 }
