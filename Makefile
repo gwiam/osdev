@@ -25,7 +25,7 @@ test:
 # Build boot sector
 ./bin/obj/bootsec_kernel.o:
 	$(info Building the boot sector)
-	@nasm ./src/boot/bootsec_kernel.asm -f elf32 -o ./bin/obj/bootsec_kernel.o -i ./src/boot/
+	@nasm ./src/boot/bootsec_kernel64.asm -f elf32 -o ./bin/obj/bootsec_kernel.o -i ./src/boot/
 
 # Link boot sector ELF to get the correct starting address 0x7c00
 ./bin/bootsec_kernel.bin: ./bin/obj/bootsec_kernel.o

@@ -11,7 +11,7 @@ void main(){
 	print("\n");
 	print("We are running a simple kernel!\n");
 	int i;
-	for(i=0; i < 10; i++){
+	for(i=0; i < 3; i++){
 		char* num = int2str(i);
 		print("Line ");
 		print(num);
